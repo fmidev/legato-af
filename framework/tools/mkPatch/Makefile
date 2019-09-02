@@ -22,7 +22,7 @@ endif
 MKPATCH_SRC = mkPatch.c $(LEGATO_ROOT)/framework/liblegato/crc.c
 
 mkPatch: $(MKPATCH_SRC)
-	$(CC) -Wall -Werror -o $(LEGATO_ROOT)/bin/$@ \
+	$(CC) -Wall -Werror -Wno-format-truncation -o $(LEGATO_ROOT)/bin/$@ \
 	    $(MKPATCH_SRC) \
 	    -I$(LEGATO_ROOT)/framework/include \
 	    -I$(LEGATO_ROOT)/3rdParty/include
