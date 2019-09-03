@@ -1,0 +1,17 @@
+executables:
+{
+  fmiDataConn = (fmiDataConn)
+}
+
+processes:
+{
+  run:
+  {
+    (fmiDataConn)
+  }
+}
+
+bindings:
+{
+  fmiDataConn.fmiDataConn.le_data -> dataConnectionService.le_data
+}
