@@ -36,6 +36,7 @@ apps:
 
     // FMI additions
     $LEGATO_ROOT/fmi/dataConn/fmiDataConn
+    $LEGATO_ROOT/fmi/power/fmiPower
 }
 
 #if ${LEGATO_FEATURE_SPISVC} = ""
