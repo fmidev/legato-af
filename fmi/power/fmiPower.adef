@@ -1,0 +1,17 @@
+executables:
+{
+  fmiPower = (fmiPower)
+}
+
+processes:
+{
+  run:
+  {
+    (fmiPower)
+  }
+}
+
+bindings:
+{
+  fmiPower.fmiPower.le_pm -> powerMgr.le_pm
+}
