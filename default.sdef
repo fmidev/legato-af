@@ -33,6 +33,9 @@ apps:
 
     // Command-line tools.
     $LEGATO_ROOT/apps/tools/tools
+
+    // FMI additions
+    $LEGATO_ROOT/fmi/dataConn/fmiDataConn
 }
 
 #if ${LEGATO_FEATURE_SPISVC} = ""
