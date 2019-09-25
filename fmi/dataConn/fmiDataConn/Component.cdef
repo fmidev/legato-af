@@ -1,13 +1,24 @@
 requires:
 {
+    component:
+    {
+       $LEGATO_ROOT/components/watchdogChain
+    }
+
     api:
     {
        modemServices/le_mdc.api [types-only]
        le_data.api
+       le_wdog.api
     }
 }
 
 sources:
 {
   fmiDataConn.c
+}
+
+cflags:
+{
+  -I${LEGATO_ROOT}/components/watchdogChain
 }
