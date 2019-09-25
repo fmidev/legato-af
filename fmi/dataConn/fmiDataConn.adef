@@ -9,9 +9,15 @@ processes:
   {
     (fmiDataConn)
   }
+
+  faultAction: restart
+  watchdogAction: restart
+  watchdogTimeout: 60000
+  maxWatchdogTimeout: 120000
 }
 
 bindings:
 {
   fmiDataConn.fmiDataConn.le_data -> dataConnectionService.le_data
+  fmiDataConn.watchdogChain.le_wdog -> <root>.le_wdog
 }
