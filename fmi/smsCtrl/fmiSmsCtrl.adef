@@ -1,0 +1,21 @@
+sandboxed: false
+
+executables:
+{
+        fmiSmsCtrl = (fmiSmsCtrl)
+}
+
+processes:
+{
+        run:
+        {
+                (fmiSmsCtrl)
+        }
+
+        faultAction: reboot
+}
+
+bindings:
+{
+        fmiSmsCtrl.fmiSmsCtrl.le_sms -> modemService.le_sms
+}
