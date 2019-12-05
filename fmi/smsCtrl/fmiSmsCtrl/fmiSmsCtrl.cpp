@@ -29,10 +29,10 @@ void read_phone_list()
         for (i = 0; i < len && !isspace(buffer[i]); i++) {}
         b = buffer + i;
         if (a != b) {
-            char *item = (char*)malloc(b - a + 1);
+          char *item = (char*)malloc(b - a + 1);
           memcpy(item, a, b - a);
           item[b - a] = 0;
-        if (num_phones >= MAX_ALLOWED_PHONES) {
+          if (num_phones >= MAX_ALLOWED_PHONES) {
           assert(0);
         } else {
           LE_INFO("Allowed phone: '%s'", item);
@@ -75,6 +75,7 @@ void on_rx_message(le_sms_MsgRef_t msgRef, void* contextPtr)
         if (result == LE_OK) {
           LE_INFO("Received text is '%s'\n", buffer);
           if (strncasecmp(buffer, "reboot", 6) == 0) {
+            le_framework_NotifyExpectedReboot();
             LE_INFO("Rebooting...");
             kill(getpid(), SIGINT);
           }

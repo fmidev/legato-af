@@ -18,4 +18,5 @@ processes:
 bindings:
 {
         fmiSmsCtrl.fmiSmsCtrl.le_sms -> modemService.le_sms
+        fmiSmsCtrl.fmiSmsCtrl.le_framework -> <root>.le_framework
 }
