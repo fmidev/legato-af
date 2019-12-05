@@ -8,5 +8,5 @@ requires:
 
 sources:
 {
-        fmiSmsCtrl.c
+        fmiSmsCtrl.cpp
 }

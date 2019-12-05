@@ -29,7 +29,7 @@ void read_phone_list()
         for (i = 0; i < len && !isspace(buffer[i]); i++) {}
         b = buffer + i;
         if (a != b) {
-          char *item = malloc(b - a + 1);
+            char *item = (char*)malloc(b - a + 1);
           memcpy(item, a, b - a);
           item[b - a] = 0;
         if (num_phones >= MAX_ALLOWED_PHONES) {
@@ -46,10 +46,10 @@ void read_phone_list()
   }
 }
 
-int lookup_phone(const char* text)
+size_t lookup_phone(const char* text)
 {
   if (num_phones) {
-    int i;
+    size_t i;
     for (i = 0; i < num_phones; i++) {
       if (strcmp(text, allowed_phones[i]) == 0) {
         return 1;
