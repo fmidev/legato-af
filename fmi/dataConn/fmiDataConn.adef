@@ -12,8 +12,8 @@ processes:
 
   faultAction: ignore
   watchdogAction: restart
-  watchdogTimeout: 60000
-  maxWatchdogTimeout: 120000
+  watchdogTimeout: 600000
+  maxWatchdogTimeout: 1200000
 
   priority: rt10
 }
