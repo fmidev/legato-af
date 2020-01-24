@@ -10,10 +10,12 @@ processes:
     (fmiDataConn)
   }
 
-  faultAction: restart
+  faultAction: ignore
   watchdogAction: restart
   watchdogTimeout: 60000
   maxWatchdogTimeout: 120000
+
+  priority: rt10
 }
 
 bindings:

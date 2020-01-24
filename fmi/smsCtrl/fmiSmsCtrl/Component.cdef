@@ -4,10 +4,23 @@ requires:
         {
                 le_sms.api
                 le_framework.api
+                le_info.api
         }
 }
 
 sources:
 {
         fmiSmsCtrl.cpp
+        main.cpp
+}
+
+cxxflags:
+{
+        -std=c++11
+}
+
+
+ldflags:
+{
+        -lcrypto
 }
