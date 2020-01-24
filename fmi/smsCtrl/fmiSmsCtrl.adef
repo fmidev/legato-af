@@ -19,4 +19,5 @@ bindings:
 {
         fmiSmsCtrl.fmiSmsCtrl.le_sms -> modemService.le_sms
         fmiSmsCtrl.fmiSmsCtrl.le_framework -> <root>.le_framework
+        fmiSmsCtrl.fmiSmsCtrl.le_info -> <root>.le_info
 }
