@@ -10,6 +10,8 @@ requires:
        modemServices/le_mdc.api [types-only]
        le_data.api
        le_wdog.api
+       le_gpioPin48 = le_gpio.api
+       le_gpioPin47 = le_gpio.api
     }
 }
 
