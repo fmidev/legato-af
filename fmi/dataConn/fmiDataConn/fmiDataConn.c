@@ -1,11 +1,26 @@
 #include "legato.h"
 #include "interfaces.h"
 #include <stdio.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <unistd.h>
 #include "watchdogChain.h"
 
 #define MS_WDOG_INTERVAL 8
 
 le_data_RequestObjRef_t req;
+
+void set_led(bool on)
+{
+  if (on) {
+    le_gpioPin48_Deactivate();
+    le_gpioPin47_Activate();
+  } else {
+    le_gpioPin48_Activate();
+    le_gpioPin47_Deactivate();
+  }
+}
 
 void log_connection_state(const char* interfaceName, bool isConnected, void* contextPtr)
 {
@@ -15,10 +30,12 @@ void log_connection_state(const char* interfaceName, bool isConnected, void* con
            interfaceName,
            (isConnected ? "" : "not"));
   LE_INFO(buffer);
+  set_led(isConnected);
 }
 
 COMPONENT_INIT
 {
+  set_led(false);
   le_data_AddConnectionStateHandler(&log_connection_state, NULL);
   le_data_ConnectService();
   req = le_data_Request();

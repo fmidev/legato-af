@@ -22,4 +22,6 @@ bindings:
 {
   fmiDataConn.fmiDataConn.le_data -> dataConnectionService.le_data
   fmiDataConn.watchdogChain.le_wdog -> <root>.le_wdog
+  fmiDataConn.fmiDataConn.le_gpioPin48 -> gpioService.le_gpioPin48
+  fmiDataConn.fmiDataConn.le_gpioPin47 -> gpioService.le_gpioPin47
 }
