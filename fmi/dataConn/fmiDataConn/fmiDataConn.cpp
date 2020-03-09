@@ -1,11 +1,14 @@
 #include "legato.h"
 #include "interfaces.h"
-#include <stdio.h>
+#include <cstdio>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+
+extern "C" {
 #include "watchdogChain.h"
+}
 
 #define MS_WDOG_INTERVAL 8
 
