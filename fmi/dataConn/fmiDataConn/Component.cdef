@@ -17,10 +17,10 @@ requires:
 
 sources:
 {
-  fmiDataConn.c
+  fmiDataConn.cpp
 }
 
-cflags:
+cxxflags:
 {
   -I${LEGATO_ROOT}/components/watchdogChain
 }
