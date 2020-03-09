@@ -3,6 +3,14 @@ executables:
   fmiDataConn = (fmiDataConn)
 }
 
+requires:
+{
+  dir:
+  {
+    /etc/fmi /etc/fmi
+  }
+}
+
 processes:
 {
   run:
@@ -21,6 +29,8 @@ processes:
 bindings:
 {
   fmiDataConn.fmiDataConn.le_data -> dataConnectionService.le_data
+  fmiDataConn.fmiDataConn.le_mdc -> modemService.le_mdc
+  fmiDataConn.fmiDataConn.le_cfg -> <root>.le_cfg
   fmiDataConn.watchdogChain.le_wdog -> <root>.le_wdog
   fmiDataConn.fmiDataConn.le_gpioPin48 -> gpioService.le_gpioPin48
   fmiDataConn.fmiDataConn.le_gpioPin47 -> gpioService.le_gpioPin47
