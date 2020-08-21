@@ -1,0 +1,33 @@
+
+sandboxed: false
+
+components:
+{
+    //socat
+    //minicom
+    fmiAwsEnvironment
+}
+
+executables:
+{
+    fmiAwsEnvironment = (fmiAwsEnvironment)
+}
+
+processes:
+{
+    run:
+    {
+         (fmiAwsEnvironment)
+    }
+}
+
+bundles:
+{
+    file:
+    {
+        // Only package sftp-server if it is provided by the toolchain.
+        #if file_exists($LEGATO_SYSROOT/usr/libexec/sftp-server)
+            [rx] $LEGATO_SYSROOT/usr/libexec/sftp-server        /bin/sftp-server
+        #endif
+    }
+}
