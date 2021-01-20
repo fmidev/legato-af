@@ -9,6 +9,8 @@
 #include <fcntl.h>
 #include <unistd.h>
 
+#include <le_thread.h>
+
 extern "C" {
 #include "watchdogChain.h"
 }
@@ -98,6 +100,8 @@ void set_led(bool on)
   }
 }
 
+bool connected = false;
+
 void log_connection_state(const char* interfaceName, bool isConnected, void* contextPtr)
 {
   char buffer[256];
@@ -107,11 +111,50 @@ void log_connection_state(const char* interfaceName, bool isConnected, void* con
            (isConnected ? "" : "not"));
   LE_INFO(buffer);
   set_led(isConnected);
+  connected = isConnected;
+}
+
+void* radio_monitor_thread_proc(void* context)
+{
+    const int period = 10;
+    const int max_offline_time = 3600;
+    int offline_time = 0;
+
+    le_mrc_ConnectService();
+
+    while (true) {
+        le_result_t res;
+        le_onoff_t onoff;
+
+        usleep(1000000*period);
+
+        res = le_mrc_GetRadioPower(&onoff);
+        if (res != LE_OK){
+            continue;
+        } else if (res == LE_OK and onoff == LE_OFF) {
+            le_mrc_SetRadioPower(LE_ON);
+        } else {
+            if (connected) {
+                offline_time = 0;
+            } else {
+                offline_time += period;
+            }
+
+            if (offline_time > max_offline_time) {
+                le_mrc_SetRadioPower(LE_OFF);
+            }
+        }
+    }
 }
 
 COMPONENT_INIT
 {
+  le_thread_Ref_t radio_monitor_thread;
+
   set_led(false);
+
+  radio_monitor_thread = le_thread_Create("RadioMonitorThread", &radio_monitor_thread_proc, nullptr);
+  le_thread_Start(radio_monitor_thread);
 
   current_profile = getProfileInUse();
   LE_INFO("Current prifile: %d", (int)current_profile);
