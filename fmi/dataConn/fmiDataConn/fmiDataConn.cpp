@@ -131,17 +131,20 @@ void* radio_monitor_thread_proc(void* context)
         res = le_mrc_GetRadioPower(&onoff);
         if (res != LE_OK){
             continue;
-        } else if (res == LE_OK and onoff == LE_OFF) {
-            le_mrc_SetRadioPower(LE_ON);
-        } else {
-            if (connected) {
+        } else if (res == LE_OK) {
+            if (onoff == LE_OFF) {
+                le_mrc_SetRadioPower(LE_ON);
                 offline_time = 0;
             } else {
-                offline_time += period;
-            }
+                if (connected) {
+                    offline_time = 0;
+                } else {
+                    offline_time += period;
+                }
 
-            if (offline_time > max_offline_time) {
-                le_mrc_SetRadioPower(LE_OFF);
+                if (offline_time > max_offline_time) {
+                    le_mrc_SetRadioPower(LE_OFF);
+                }
             }
         }
     }
