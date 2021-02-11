@@ -34,7 +34,6 @@ apps:
 
     // FMI additions
     $LEGATO_ROOT/fmi/dataConn/fmiDataConn
-    $LEGATO_ROOT/fmi/power/fmiPower
     $LEGATO_ROOT/fmi/smsCtrl/fmiSmsCtrl
     //$LEGATO_ROOT/fmi/fmiAwsEnvironment/fmiAwsEnvironment
 }

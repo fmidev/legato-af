@@ -35,4 +35,8 @@ bindings:
   fmiDataConn.watchdogChain.le_wdog -> <root>.le_wdog
   fmiDataConn.fmiDataConn.le_gpioPin48 -> gpioService.le_gpioPin48
   fmiDataConn.fmiDataConn.le_gpioPin47 -> gpioService.le_gpioPin47
+  fmiDataConn.fmiDataConn.le_ulpm -> <root>.le_ulpm
+  fmiDataConn.fmiDataConn.le_appCtrl -> <root>.le_appCtrl
+  fmiDataConn.fmiDataConn.le_appInfo -> <root>.le_appInfo
+  fmiDataConn.fmiDataConn.le_pm -> powerMgr.le_pm
 }

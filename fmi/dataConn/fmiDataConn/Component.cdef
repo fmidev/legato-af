@@ -14,12 +14,17 @@ requires:
        le_cfg.api
        le_gpioPin48 = le_gpio.api
        le_gpioPin47 = le_gpio.api
+       le_ulpm = le_ulpm.api
+       le_appCtrl.api
+       le_appInfo.api
+       le_pm.api
     }
 }
 
 sources:
 {
   fmiDataConn.cpp
+  DataConnMonitor.cpp
 }
 
 cxxflags:
