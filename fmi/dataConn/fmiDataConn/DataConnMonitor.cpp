@@ -89,21 +89,6 @@ void DataConnectionMonitor::on_network_registration_monitor_timer()
     le_onoff_t onoff;
     double now = get_clock();
 
-#if 0
-    if (access("/tmp/reboot.txt", 0) == 0) {
-        LE_INFO("/tmp/reboot.txt noticed");
-        if (unlink("/tmp/reboot.txt") != 0) {
-            LE_ERROR("unlink: %s", strerror(errno));
-        }
-        if (access("/tmp/reboot.txt", 0) != 0) {
-            // Try only if suceeded to remove file
-            reboot();
-        } else {
-            LE_ERROR("/tmp/reboot.txt not removed: ignoring request");
-        }
-    }
-#endif
-
     LE_ERROR_IF(le_mrc_GetRadioPower(&onoff) != LE_OK, "Failed to query radio state");
     //LE_INFO("radio=%d", (int)onoff);
     if (onoff == LE_OFF) {
