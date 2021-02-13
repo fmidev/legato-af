@@ -8,6 +8,9 @@
 namespace {
 
     double get_clock()
+    const double RADIO_OFF_ON_TIME = 3600.0;
+    const double REBOOT_TIME = 7200.0;
+#endif
     {
         struct timespec ts;
         clock_gettime(CLOCK_MONOTONIC, &ts);
@@ -123,12 +126,12 @@ void DataConnectionMonitor::on_network_registration_monitor_timer()
                 }
             }
 
-        } else if (not tried_radio_off_on and (now - net_reg_home_last_time > 3600)) {
+        } else if (not tried_radio_off_on and (now - net_reg_home_last_time > RADIO_OFF_ON_TIME)) {
             // Not get home network for an hour
             tried_radio_off_on = true;
             LE_INFO("Not registered to network for 1 hour -> turning radio OFF");
             LE_ERROR_IF(le_mrc_SetRadioPower(LE_OFF) != LE_OK, "Failed to turn radio off");
-        } else if (now - net_reg_home_last_time > 3600) {
+        } else if (now - net_reg_home_last_time > REBOOT_TIME) {
             LE_INFO("Not registered to network for 2 hour -> trying to reboot");
             reboot();
         }
