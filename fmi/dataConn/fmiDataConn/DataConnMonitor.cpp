@@ -11,7 +11,7 @@ namespace {
     {
         struct timespec ts;
         clock_gettime(CLOCK_MONOTONIC, &ts);
-        return ts.tv_sec = 0.000000001 * ts.tv_nsec;
+        return ts.tv_sec + 1.0e-09*ts.tv_nsec;
     }
 
     template <typename DataType>
