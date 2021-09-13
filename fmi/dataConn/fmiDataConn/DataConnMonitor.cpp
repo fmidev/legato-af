@@ -7,10 +7,10 @@
 
 namespace {
 
-    double get_clock()
     const double RADIO_OFF_ON_TIME = 3600.0;
     const double REBOOT_TIME = 7200.0;
-#endif
+
+    double get_clock()
     {
         struct timespec ts;
         clock_gettime(CLOCK_MONOTONIC, &ts);
